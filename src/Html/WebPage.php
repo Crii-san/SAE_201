@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Html;
@@ -6,9 +7,8 @@ namespace Html;
 /**
  * Class Webpage : définit une page web avec une entête, un titre et un contenu.
  */
-class WebPage{
-
-
+class WebPage
+{
     protected string $head = '';
     protected string $title;
     protected string $body = '';
@@ -80,7 +80,7 @@ class WebPage{
      * @param string $string Chaîne de caractères à protéger
      * @return string
      */
-    public function escapeString(string $string) : string
+    public function escapeString(string $string): string
     {
         return htmlspecialchars($string, ENT_QUOTES | ENT_HTML5);
     }
@@ -89,7 +89,7 @@ class WebPage{
      *
      * @return string
      */
-    public function getBody() : string
+    public function getBody(): string
     {
         return $this->body;
     }
@@ -105,7 +105,7 @@ class WebPage{
     /** Acceseur à la date de la dernière modification de la page Web.
      * @return string
      */
-    public function getLastModification() : string
+    public function getLastModification(): string
     {
         return date("d/m/Y-H:i:s", getlastmod());
     }
@@ -115,7 +115,7 @@ class WebPage{
      * @param string $title Titre de la page Web
      * @return string
      */
-    public function getTitle(string $title) : string
+    public function getTitle(string $title): string
     {
         return $this->title;
     }
@@ -132,7 +132,7 @@ class WebPage{
     /** Produit une page HTML complète.
      * @return string
      */
-    public function toHTML() : string
+    public function toHTML(): string
     {
         $html = <<<HTML
         <!DOCTYPE html>
