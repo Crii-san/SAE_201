@@ -1,0 +1,19 @@
+{
+    "name": "souk0003/sae2-01",
+    "description": "Développement d'une application web de consultation de films",
+    "type": "project",
+    "license": "Copyleft",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christelle Souka",
+            "email": "christelle.souka@etudiant.univ-reims.fr"
+        }
+    ],
+    "require": {}
+
+}
