@@ -9,13 +9,16 @@ use Html\WebPage;
 
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
-$webpage = new WebPage();
+$webPage = new WebPage();
 
 #Titre de la page
-$webpage -> setTitle("Liste des films");
+$webPage -> setTitle("Liste des films");
+
+#Ajout fichier CSS
+$webPage->appendCssUrl("/css/style.css");
 
 #Header
-$webpage->appendContent("<h1>Films</h1>");
+$webPage->appendContent("<h1>Films</h1>");
 
 #Content
 $stmt = MyPDO::getInstance()->prepare(
@@ -28,11 +31,10 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $webpage->appendContent("<p>{$ligne['title']}</p>\n");
+    $webPage->appendContent("<p>{$ligne['title']}</p>\n");
 }
 
 #Footer
-$webpage->appendContent("<p>{$webpage->getLastModification()}</p>");
+$webPage->appendContent("<p>{$webPage->getLastModification()}</p>");
 
-
-echo $webpage->toHTML();
+echo $webPage->toHTML();
