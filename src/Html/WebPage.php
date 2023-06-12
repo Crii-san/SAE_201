@@ -7,7 +7,7 @@ namespace Html;
  * Class Webpage : définit une page web avec une entête, un titre et un contenu.
  */
 class WebPage{
-    
+
 
     protected string $head = '';
     protected string $title;
