@@ -13,7 +13,7 @@ class Poster
     private int $id;
     private string $jpeg;
 
-    /**
+    /** Accesseur à l'id du poster
      * @return int
      */
     public function getId(): int
@@ -21,7 +21,7 @@ class Poster
         return $this->id;
     }
 
-    /**
+    /** Accesseur à l'image du poster
      * @return string
      */
     public function getJpeg(): string
@@ -29,8 +29,8 @@ class Poster
         return $this->jpeg;
     }
 
-    /**
-     * @param int $id
+    /** Permet de retrouver le poster correspondant à l'id de l'artiste en paragraphe.
+     * @param int $id Identifiant de l'artiste
      * @return Poster
      */
     public static function findById(int $id): Poster
