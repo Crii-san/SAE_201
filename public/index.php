@@ -31,9 +31,10 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
+    $poster = ""; #Code à compléter
+    $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
     $webPage->appendContent("<p>{$ligne['title']}</p>\n");
-    $poster = "";
-    $webPage->appendContent("<img src='/cover.php?posterId={$poster}' alt='Couverture de l album'>");
+
 }
 
 #Footer
