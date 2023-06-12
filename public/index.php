@@ -32,6 +32,8 @@ $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
     $webPage->appendContent("<p>{$ligne['title']}</p>\n");
+    $poster = "";
+    $webPage->appendContent("<img src='/cover.php?posterId={$poster}' alt='Couverture de l album'>");
 }
 
 #Footer
