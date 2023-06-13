@@ -65,21 +65,21 @@ class Actor
      */
     public function getBirthPlace(): string
     {
-        return $this->birthPlace;
+        return $this->placeOfBirth;
     }
 
     /**
      * @param string $birthPlace
      */
-    public function setBirthPlace(string $birthPlace): void
+    public function setBirthPlace(string $placeOfBirth): void
     {
-        $this->birthPlace = $birthPlace;
+        $this->placeOfBirth = $placeOfBirth;
     }
 
     /**
      * @return string
      */
-    public function getDeathday(): string
+    public function getDeathday(): string|null
     {
         return $this->deathday;
     }
@@ -98,6 +98,38 @@ class Actor
     public function getInt(): int
     {
         return $this->int;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBirthday(): string
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param string $birthday
+     */
+    public function setBirthday(string $birthday): void
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
