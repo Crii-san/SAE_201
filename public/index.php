@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once '../vendor/autoload.php';
 
 use Database\MyPdo;
+use Entity\Poster;
 use Html\WebPage;
 
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
@@ -21,20 +22,19 @@ $webPage->appendCssUrl("/css/style.css");
 $webPage->appendContent("<h1>Films</h1>");
 
 #Content
+
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT id, title
-    FROM movie
-SQL
+        SELECT *
+        FROM movie
+        SQL
 );
-
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $poster = ""; #Code à compléter
+    $poster = $ligne['posterId']; #Code à compléter
     $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
     $webPage->appendContent("<p>{$ligne['title']}</p>\n");
-
 }
 
 #Footer
