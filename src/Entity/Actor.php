@@ -28,36 +28,35 @@ class Actor
     }
 
     /**
+     * @return int
+     */
+    public function getAvatarId(): int
+    {
+        return $this->avatarId;
+    }
+
+    /**
+     * @param int $avatarId
+     */
+    public function setAvatarId(int $avatarId): void
+    {
+        $this->avatarId = $avatarId;
+    }
+
+    /**
      * @return string
      */
-    public function getDeathDay(): string
+    public function getBiography(): string
     {
-        return $this->deathDay;
+        return $this->biography;
     }
 
     /**
-     * @param string $deathDay
+     * @param string $biography
      */
-    public function setDeathDay(string $deathDay): void
+    public function setBiography(string $biography): void
     {
-        $this->deathDay = $deathDay;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
+        $this->biography = $biography;
     }
 
     /**
@@ -79,33 +78,65 @@ class Actor
     /**
      * @return string
      */
-    public function getBirthdate(): string
+    public function getDeathday(): string
     {
-        return $this->Birthdate;
+        return $this->deathday;
     }
 
     /**
-     * @param string $Birthdate
+     * @param string $deathday
      */
-    public function setBirthdate(string $Birthdate): void
+    public function setDeathday(string $deathday): void
     {
-        $this->Birthdate = $Birthdate;
+        $this->deathday = $deathday;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInt(): int
+    {
+        return $this->int;
+    }
+
+    /**
+     * @param int $int
+     */
+    public function setInt(int $int): void
+    {
+        $this->int = $int;
     }
 
     /**
      * @return string
      */
-    public function getBiography(): string
+    public function getName(): string
     {
-        return $this->biography;
+        return $this->name;
     }
 
     /**
-     * @param string $biography
+     * @param string $name
      */
-    public function setBiography(string $biography): void
+    public function setName(string $name): void
     {
-        $this->biography = $biography;
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlaceOfBirth(): string
+    {
+        return $this->placeOfBirth;
+    }
+
+    /**
+     * @param string $placeOfBirth
+     */
+    public function setPlaceOfBirth(string $placeOfBirth): void
+    {
+        $this->placeOfBirth = $placeOfBirth;
     }
 
     public static function findById($id): Actor
