@@ -5,6 +5,7 @@ namespace Entity;
 
 class Movie
 {
+    protected int $id;
     protected string  $originalLanguage;
     protected string  $originalTitle;
     protected string  $overview;
@@ -14,6 +15,7 @@ class Movie
     protected string  $title;
 
     /**
+     * @param int $id
      * @param string $originalLanguage
      * @param string $originalTitle
      * @param string $overview
@@ -22,8 +24,9 @@ class Movie
      * @param string $tagline
      * @param string $title
      */
-    public function __construct(string $originalLanguage, string $originalTitle, string $overview, string $releaseDate, string $runtime, string $tagline, string $title)
+    public function __construct(int $id, string $originalLanguage, string $originalTitle, string $overview, string $releaseDate, string $runtime, string $tagline, string $title)
     {
+        $this->id = $id;
         $this->originalLanguage = $originalLanguage;
         $this->originalTitle = $originalTitle;
         $this->overview = $overview;
@@ -31,6 +34,14 @@ class Movie
         $this->runtime = $runtime;
         $this->tagline = $tagline;
         $this->title = $title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**
