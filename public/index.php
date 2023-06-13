@@ -33,13 +33,14 @@ $stmt = MyPDO::getInstance()->prepare(
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
+    $webPage->appendContent("<a href='/movie.php?movieId={$ligne['id']}'>");
     $webPage->appendContent("<div class='film'>");
     $poster = $ligne['posterId'];
-    $webPage->appendContent("<a href='/movie.php?movieId={$ligne['id']}'>");
     $webPage->appendContent("<img src='/poster.php?posterId={$poster}' alt='Poster du film'>");
     $webPage->appendContent("<p>{$ligne['title']}</p>\n");
-    $webPage->appendContent("</a><br>");
     $webPage->appendContent("</div>");
+    $webPage->appendContent("</a><br>");
+
 
 }
 
