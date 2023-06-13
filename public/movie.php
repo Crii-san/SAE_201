@@ -57,14 +57,14 @@ $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
     $vignette = $ligne['avatarId'];
-    $actorId = $ligne['p.id'];
+    $actorId = $ligne['id'];
 
     #lien vers l'acteur
     $webPage->appendContent("<a href='actor.php?actorId={$actorId}'>");
 
     $webPage->appendContent("<img src='/poster.php?posterId={$vignette}'>");
-    $webPage->appendContent("<p>{$ligne['role']}</p>\n");
-    $webPage->appendContent("<p>{$ligne['name']}</p>\n");
+    $webPage->appendContent("<p>Rôle : {$ligne['role']}</p>\n");
+    $webPage->appendContent("<p>Acteur : {$ligne['name']}</p>\n");
 
     $webPage->appendContent("</a>");
 }
