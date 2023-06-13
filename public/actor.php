@@ -21,10 +21,10 @@ $actor = Actor::findById($actorId);
 $webPage -> setTitle($actor->getName());
 
 #Ajout fichier CSS
-$webPage->appendCssUrl("/css/style_actor.css");
+$webPage->appendCssUrl("/css/style.css");
 
 #Header
-$webPage->appendContent("<h1>Films - {$actor->getName()}</h1>");
+$webPage->appendContent("<h1 class='header'>Films - {$actor->getName()}</h1>");
 
 #content
 
@@ -70,6 +70,6 @@ while (($ligne = $stmt->fetch()) !== false) {
 }
 
 #Footer
-$webPage->appendContent("<p>{$webPage->getLastModification()}</p>");
+$webPage->appendContent("<p class='footer'>{$webPage->getLastModification()}</p>");
 
 echo $webPage->toHTML();
