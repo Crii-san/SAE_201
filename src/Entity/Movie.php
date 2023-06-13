@@ -16,9 +16,27 @@ class Movie
     protected int  $runtime;
     protected string  $tagline;
     protected string  $title;
+    private int $posterId;
+
+    /**
+     * @return int
+     */
+    public function getPosterId(): int
+    {
+        return $this->posterId;
+    }
+
+    /**
+     * @param int $posterId
+     */
+    public function setPosterId(int $posterId): void
+    {
+        $this->posterId = $posterId;
+    }
 
     /**
      * @param int $id
+     *
      * @param string $originalLanguage
      * @param string $originalTitle
      * @param string $overview
@@ -27,9 +45,10 @@ class Movie
      * @param string $tagline
      * @param string $title
      */
-    public function __construct(int $id, string $originalLanguage, string $originalTitle, string $overview, string $releaseDate, int $runtime, string $tagline, string $title)
+    public function __construct(int $id, int $posterId, string $originalLanguage, string $originalTitle, string $overview, string $releaseDate, int $runtime, string $tagline, string $title)
     {
         $this->id = $id;
+        $this->posterId = $posterId;
         $this->originalLanguage = $originalLanguage;
         $this->originalTitle = $originalTitle;
         $this->overview = $overview;
@@ -114,15 +133,15 @@ class Movie
     /**
      * @return string
      */
-    public function getRuntime(): string
+    public function getRuntime(): int
     {
         return $this->runtime;
     }
 
     /**
-     * @param string $runtime
+     * @param int $runtime
      */
-    public function setRuntime(string $runtime): void
+    public function setRuntime(int $runtime): void
     {
         $this->runtime = $runtime;
     }
@@ -185,7 +204,7 @@ class Movie
             http_response_code(404);
             exit();
         }
-        $movie = new Movie($res['id'], $res['originalLanguage'], $res['originalTitle'], $res['overview'], $res['releaseDate'], $res['runtime'], $res['tagline'], $res['title']);
+        $movie = new Movie($res['id'], $res['posterId'], $res['originalLanguage'], $res['originalTitle'], $res['overview'], $res['releaseDate'], $res['runtime'], $res['tagline'], $res['title']);
 
         return $movie;
     }
