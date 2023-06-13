@@ -9,20 +9,40 @@ class Actor
     protected string $birthPlace;
     protected string $Birthdate;
     protected string $biography;
+    protected string $deathDay;
 
     /**
      * @param string $name
      * @param string $birthPlace
      * @param string $Birthdate
      * @param string $biography
+     * @param string $deathDay
      */
-    public function __construct(string $name, string $birthPlace, string $Birthdate, string $biography)
+    public function __construct(string $name, string $birthPlace, string $Birthdate, string $biography, string $deathDay)
     {
         $this->name = $name;
         $this->birthPlace = $birthPlace;
         $this->Birthdate = $Birthdate;
         $this->biography = $biography;
+        $this->deathDay = $deathDay;
     }
+
+    /**
+     * @return string
+     */
+    public function getDeathDay(): string
+    {
+        return $this->deathDay;
+    }
+
+    /**
+     * @param string $deathDay
+     */
+    public function setDeathDay(string $deathDay): void
+    {
+        $this->deathDay = $deathDay;
+    }
+
 
     /**
      * @return string
