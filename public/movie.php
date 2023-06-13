@@ -27,6 +27,8 @@ $webPage->appendCssUrl("/css/style_movie.css");
 $webPage->appendContent("<h1>Films - {$movie->getTitle()} </h1>");
 
 #content
+
+# Film
 $poster = $movie->getPosterId();
 $webPage->appendContent("<div>");
 $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
@@ -37,15 +39,13 @@ $webPage->appendContent("<p>Slogan :{$movie->getTagline()} </p>");
 $webPage->appendContent("<p>Résumé : {$movie->getOverview()} </p>");
 $webPage->appendContent("</div>");
 
-
-# à completer, implementer la variable dans le where
-/*
+# Acteurs
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT role, name,birthday,deathDay,biography,placeOfBirth
+    SELECT role, name, birthday, deathDay, biography, placeOfBirth
     FROM people p, cast c, movie m
-    WHERE p.peopleId = c.peopleId
-    AND c.movieId = m.movieId
+    WHERE p.id = c.peopleId
+    AND c.movieId = m.id
     ORDER BY orderIndex
 SQL
 );
@@ -60,9 +60,9 @@ while (($ligne = $stmt->fetch()) !== false) {
     $webPage->appendContent("<p>{$ligne['name']}</p>\n");
     $webPage->appendContent("</div></a>");
 }
-*/
+
+
 #Footer
-/*
-$webPage->appendContent("<p>{$webPage->getLastModification()}</p>");
-*/
+$webPage->appendContent("<p>Dernière mofication : {$webPage->getLastModification()}</p>");
+
 echo $webPage->toHTML();
