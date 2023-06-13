@@ -145,7 +145,7 @@ class Actor
         $stmt = MyPDO::getInstance()->prepare(
             <<<'SQL'
         SELECT *
-        FROM movie
+        FROM people
         WHERE id = :id
         SQL
         );
