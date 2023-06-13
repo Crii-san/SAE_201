@@ -41,22 +41,23 @@ $webPage->appendContent("<\div>");
 # à completer, implementer la variable dans le where
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT role, name
+    SELECT role, name,birthday,deathDay,biography,placeOfBirth
     FROM people, cast 
     WHERE movieID = [#insert actor id]
     ORDER BY orderIndex
 SQL
 );
 
+
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
     $poster = ""; #Code à compléter
-    $webPage->appendContent("<div>");
+    $webPage->appendContent("<a href='actor.php?name={$ligne['name']}&?birthplace={$ligne['placeOfBirth']}&?birthdate={$ligne['birthday']}&?biography={$ligne['biography']}&?deathDay={$ligne['deathDay']}'><div>");
     $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
     $webPage->appendContent("<p>{$ligne['role']}</p>\n");
     $webPage->appendContent("<p>{$ligne['name']}</p>\n");
-    $webPage->appendContent("</div>");
+    $webPage->appendContent("</div></a>");
 }
 
 #Footer
