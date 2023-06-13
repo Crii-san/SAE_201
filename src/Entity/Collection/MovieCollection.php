@@ -9,7 +9,7 @@ use PDO;
 
 class MovieCollection
 {
-    /** Retourne un tableau contenant tous les artistes triés par ordre alphabétique
+    /** Retourne un tableau contenant tous les films
      * @return Movie[]
      */
     public static function findAll() : array
