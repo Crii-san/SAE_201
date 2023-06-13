@@ -11,13 +11,13 @@ class Actor
 {
     protected int $id;
     protected string $name;
-    protected string $birthday;
-    protected string $placeOfBirth;
+    protected string|null $birthday;
+    protected string|null $placeOfBirth;
     protected string $biography;
     protected string|null $deathday;
     protected int $avatarId;
 
-    public function __construct(int $id, string $name, string $birthday, string $placeOfBirth, string $biography, string|null $deathday, int $avatarId)
+    public function __construct(int $id, string $name, string|null $birthday, string|null $placeOfBirth, string $biography, string|null $deathday, int $avatarId)
     {
         $this->id = $id;
         $this->name = $name;
