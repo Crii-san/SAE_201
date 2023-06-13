@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 require_once '../vendor/autoload.php';
 
 use Database\MyPdo;
@@ -9,14 +8,14 @@ use Html\WebPage;
 use Entity\Actor;
 use Entity\Exception\EntityNotFoundException;
 
-
-
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
-$actorId = intval($_GET['actorId']);
+$actorId = $_GET['actorId'];
 
 $webPage = new WebPage();
-$actor = new Actor($_GET["name"],$_GET["birthplace"],$_GET["birthdate"],$_GET["biography"],$_GET["deathDay"]);
+$webPage->appendContent("<h1>Bonjour</h1>");
+
+$actor = Actor::findById($actorId);
 
 #Titre de la page
 $webPage -> setTitle($actor->getName());
@@ -25,10 +24,11 @@ $webPage -> setTitle($actor->getName());
 $webPage->appendCssUrl("/css/style_actor.css");
 
 #Header
-$webPage->appendContent("<h1>{$actor->getName()} </h1>");
+$webPage->appendContent("<h1>{$actor->getName()}</h1>");
 
 #content
-$vignette=" "; #à completer
+/*
+$vignette = $actor['avatarId'];
 $webPage->appendContent("<div>");
 $webPage->appendContent("<img src='/poster.php?posterId={$vignette}'>");
 $webPage->appendContent("<p>{$actor->getName()} </p>");
@@ -36,9 +36,10 @@ $webPage->appendContent("<p>{$actor->getBirthPlace()} </p>");
 $webPage->appendContent("<p>{$actor->getBirthdate()} - {$actor->getDeathDay()}</p>");
 $webPage->appendContent("<p>{$actor->getBiography()} </p>");
 $webPage->appendContent("<\div>");
-
+*/
 
 # à completer, implementer la variable dans le where
+/*
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT title, role, releaseDate, posterid,originalLanguage,originalTitle,overview,runtime,tagline
@@ -59,6 +60,7 @@ while (($ligne = $stmt->fetch()) !== false) {
     $webPage->appendContent("<p>{$ligne['releaseDate']}</p>\n");
     $webPage->appendContent("</div></a>");
 }
+*/
 
 #Footer
 $webPage->appendContent("<p>{$webPage->getLastModification()}</p>");
