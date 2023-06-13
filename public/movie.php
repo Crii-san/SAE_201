@@ -40,9 +40,10 @@ $webPage->appendContent("<p>Résumé : {$movie->getOverview()} </p>");
 $webPage->appendContent("</div>");
 
 # Acteurs
+
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT role, name, birthday, deathDay, biography, placeOfBirth, avatarId
+    SELECT p.id, role, name, birthday, deathDay, biography, placeOfBirth, avatarId
     FROM people p, cast c, movie m
     WHERE p.id = c.peopleId
     AND c.movieId = m.id
@@ -56,12 +57,16 @@ $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
     $vignette = $ligne['avatarId'];
+    $actorId = $ligne['p.id'];
+
     #lien vers l'acteur
-    $webPage->appendContent("<a href='actor.php?name={$ligne['name']}&?birthplace={$ligne['placeOfBirth']}&?birthdate={$ligne['birthday']}&?biography={$ligne['biography']}&?deathDay={$ligne['deathDay']}'><div>");
+    $webPage->appendContent("<a href='actor.php?actorId={$actorId}'>");
+
     $webPage->appendContent("<img src='/poster.php?posterId={$vignette}'>");
     $webPage->appendContent("<p>{$ligne['role']}</p>\n");
     $webPage->appendContent("<p>{$ligne['name']}</p>\n");
-    $webPage->appendContent("</div></a>");
+
+    $webPage->appendContent("</a>");
 }
 
 
