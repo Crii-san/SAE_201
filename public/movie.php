@@ -60,7 +60,7 @@ while (($ligne = $stmt->fetch()) !== false) {
     #lien vers l'acteur
     $webPage->appendContent("<a href='/actor.php?actorId={$actorId}'>");
 
-    $webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo de l'acteur>");
+    $webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo de l acteur'>");
     $webPage->appendContent("<p>Rôle : {$ligne['role']}</p>\n");
     $webPage->appendContent("<p>Acteur : {$ligne['name']}</p>\n");
 
