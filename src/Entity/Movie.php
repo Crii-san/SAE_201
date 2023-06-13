@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use PDO;
+
 class Movie
 {
     protected int $id;
@@ -10,7 +13,7 @@ class Movie
     protected string  $originalTitle;
     protected string  $overview;
     protected string  $releaseDate;
-    protected string  $runtime;
+    protected int  $runtime;
     protected string  $tagline;
     protected string  $title;
 
@@ -20,11 +23,11 @@ class Movie
      * @param string $originalTitle
      * @param string $overview
      * @param string $releaseDate
-     * @param string $runtime
+     * @param int $runtime
      * @param string $tagline
      * @param string $title
      */
-    public function __construct(int $id, string $originalLanguage, string $originalTitle, string $overview, string $releaseDate, string $runtime, string $tagline, string $title)
+    public function __construct(int $id, string $originalLanguage, string $originalTitle, string $overview, string $releaseDate, int $runtime, string $tagline, string $title)
     {
         $this->id = $id;
         $this->originalLanguage = $originalLanguage;
@@ -162,5 +165,28 @@ class Movie
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    public static function findById($id): Movie
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+        SELECT *
+        FROM movie
+        WHERE id = :id
+        SQL
+        );
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$res) {
+            http_response_code(404);
+            exit();
+        }
+        $movie = new Movie($res['id'], $res['originalLanguage'], $res['originalTitle'], $res['overview'], $res['releaseDate'], $res['runtime'], $res['tagline'], $res['title']);
+
+        return $movie;
     }
 }
