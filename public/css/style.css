@@ -5,6 +5,7 @@ body {
     color: white;
     text-decoration: none;
     font-family: Arial, serif;
+
 }
 
 a {
@@ -25,7 +26,7 @@ a {
     margin: 0;
     text-align: center;
     background-color: #8C8C8C;
-    height: 150%;
+    height: 200%;
     font-size: xx-large;
     align-items: center;
     flex: 1;
@@ -46,3 +47,50 @@ a {
     text-align: center;
     width: 15em;
 }
+
+.infosFilm {
+    color: black;
+    text-align: justify;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+}
+
+.détailsFilm {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+
+.x{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.actors, .roleActor{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+}
+.roleActor{
+    flex:3;
+    justify-content: space-around;
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+
+}
+.actor {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+
+
+
