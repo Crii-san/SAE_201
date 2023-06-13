@@ -27,6 +27,7 @@ $webPage->appendCssUrl("/css/style.css");
 $webPage->appendContent("<h1 class='header'>Films - {$actor->getName()}</h1>");
 
 #content
+$webPage->appendContent("<div class='content'>");
 
 # Informations sur l'acteur
 if ($actor->getDeathDay() == null) {
@@ -68,8 +69,9 @@ while (($ligne = $stmt->fetch()) !== false) {
     $webPage->appendContent("<p>Date de sortie : {$ligne['releaseDate']}</p>\n");
     $webPage->appendContent("</a>");
 }
+$webPage->appendContent("<div>");
 
 #Footer
-$webPage->appendContent("<p class='footer'>{$webPage->getLastModification()}</p>");
+$webPage->appendContent("<p class='footer'>Dernière modification {$webPage->getLastModification()}</p>");
 
 echo $webPage->toHTML();
