@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header{
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    height: 40%;
+    font-size: xxx-large;
+    align-items: center;
+}
+
+.footer{
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    height: 30%;
+    font-size: xx-large;
+    align-items: center;
+}
+
+.content {
+    border-style: solid;
+    border-color: black;
+    overflow-y: scroll;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 40px;
+}
+
+.film {
+    flex-direction: column;
+    text-align: center;
+}
