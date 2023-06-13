@@ -44,4 +44,5 @@ a {
 .film {
     flex-direction: column;
     text-align: center;
+    width: 15em;
 }
