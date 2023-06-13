@@ -30,12 +30,12 @@ $webPage->appendContent("<h1>Films - {$movie->getTitle()} </h1>");
 $poster = $movie->getPosterId();
 $webPage->appendContent("<div>");
 $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
-$webPage->appendContent("<p>{$movie->getTitle()} </p>");
-$webPage->appendContent("<p>{$movie->getReleaseDate()} </p>");
-$webPage->appendContent("<p>{$movie->getOriginalTitle()}</p>");
-$webPage->appendContent("<p>{$movie->getTagline()} </p>");
-$webPage->appendContent("<p>{$movie->getOverview()} </p>");
-$webPage->appendContent("<\div>");
+$webPage->appendContent("<p>Titre : {$movie->getTitle()} </p>");
+$webPage->appendContent("<p>Date de sortie : {$movie->getReleaseDate()} </p>");
+$webPage->appendContent("<p>Tirtre original : {$movie->getOriginalTitle()}</p>");
+$webPage->appendContent("<p>Slogan :{$movie->getTagline()} </p>");
+$webPage->appendContent("<p>Résumé : {$movie->getOverview()} </p>");
+$webPage->appendContent("</div>");
 
 
 # à completer, implementer la variable dans le where
