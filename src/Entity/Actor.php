@@ -9,18 +9,19 @@ use PDO;
 
 class Actor
 {
-    protected int $int;
+    protected int $id;
     protected string $name;
-    protected string $birthPlace;
+    protected string $birthday;
     protected string $placeOfBirth;
     protected string $biography;
     protected string $deathday;
     protected int $avatarId;
 
-    public function __construct(string $name, string $birthPlace, string $placeOfBirth, string $biography, string $deathday, int $avatarId)
+    public function __construct(int $id, string $name, string $birthday, string $placeOfBirth, string $biography, string $deathday, int $avatarId)
     {
+        $this->id = $id;
         $this->name = $name;
-        $this->birthPlace = $birthPlace;
+        $this->birthday = $birthday;
         $this->placeOfBirth = $placeOfBirth;
         $this->biography = $biography;
         $this->deathday = $deathday;
@@ -157,7 +158,7 @@ class Actor
             http_response_code(404);
             exit();
         }
-        $movie = new Actor();
+        $movie = new Actor($res['id'], $res['name'], $res['birthday'], $res['placeOfBirth'], $res['biography'], $res['deathday'], $res['avatarId']);
 
         return $movie;
     }
