@@ -13,8 +13,8 @@ MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', '
 $actorId = $_GET['actorId'];
 
 $webPage = new WebPage();
-$webPage->appendContent("<h1>Bonjour</h1>");
 
+# Acteur concerné par la fiche
 $actor = Actor::findById($actorId);
 
 #Titre de la page
@@ -24,20 +24,26 @@ $webPage -> setTitle($actor->getName());
 $webPage->appendCssUrl("/css/style_actor.css");
 
 #Header
-$webPage->appendContent("<h1>{$actor->getName()}</h1>");
+$webPage->appendContent("<h1>Films - {$actor->getName()}</h1>");
 
 #content
-/*
-$vignette = $actor['avatarId'];
+
+# Informations sur l'acteur
+if ($actor->getDeathDay() == null) {
+    $res = "";
+} else {
+    $res = "- Mort le : ".$actor->getDeathDay();
+}
+$vignette = $actor->getAvatarId();
 $webPage->appendContent("<div>");
 $webPage->appendContent("<img src='/poster.php?posterId={$vignette}'>");
-$webPage->appendContent("<p>{$actor->getName()} </p>");
-$webPage->appendContent("<p>{$actor->getBirthPlace()} </p>");
-$webPage->appendContent("<p>{$actor->getBirthdate()} - {$actor->getDeathDay()}</p>");
-$webPage->appendContent("<p>{$actor->getBiography()} </p>");
-$webPage->appendContent("<\div>");
-*/
+$webPage->appendContent("<p>Nom : {$actor->getName()} </p>");
+$webPage->appendContent("<p>Lieu de naissance : {$actor->getBirthPlace()} </p>");
+$webPage->appendContent("<p>Né le : {$actor->getBirthday()} {$res}</p>");
+$webPage->appendContent("<p>Biographie : {$actor->getBiography()} </p>");
+$webPage->appendContent("</div>");
 
+#Informantions sur les films de l'acteur
 # à completer, implementer la variable dans le where
 /*
 $stmt = MyPDO::getInstance()->prepare(
