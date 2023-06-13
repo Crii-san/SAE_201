@@ -14,10 +14,10 @@ class Actor
     protected string $birthday;
     protected string $placeOfBirth;
     protected string $biography;
-    protected string $deathday;
+    protected string|null $deathday;
     protected int $avatarId;
 
-    public function __construct(int $id, string $name, string $birthday, string $placeOfBirth, string $biography, string $deathday, int $avatarId)
+    public function __construct(int $id, string $name, string $birthday, string $placeOfBirth, string $biography, string|null $deathday, int $avatarId)
     {
         $this->id = $id;
         $this->name = $name;
