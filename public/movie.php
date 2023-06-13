@@ -42,20 +42,23 @@ $webPage->appendContent("</div>");
 # Acteurs
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
-    SELECT role, name, birthday, deathDay, biography, placeOfBirth
+    SELECT role, name, birthday, deathDay, biography, placeOfBirth, avatarId
     FROM people p, cast c, movie m
     WHERE p.id = c.peopleId
     AND c.movieId = m.id
+    AND m.id = :movieId
     ORDER BY orderIndex
 SQL
 );
 
+$stmt->bindValue(':movieId', $movieId, PDO::PARAM_INT);
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $vignette = ""; #Code à compléter
+    $vignette = $ligne['avatarId'];
+    #lien vers l'acteur
     $webPage->appendContent("<a href='actor.php?name={$ligne['name']}&?birthplace={$ligne['placeOfBirth']}&?birthdate={$ligne['birthday']}&?biography={$ligne['biography']}&?deathDay={$ligne['deathDay']}'><div>");
-    $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
+    $webPage->appendContent("<img src='/poster.php?posterId={$vignette}'>");
     $webPage->appendContent("<p>{$ligne['role']}</p>\n");
     $webPage->appendContent("<p>{$ligne['name']}</p>\n");
     $webPage->appendContent("</div></a>");
