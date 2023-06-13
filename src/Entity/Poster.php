@@ -30,7 +30,7 @@ class Poster
     }
 
     /** Permet de retrouver le poster correspondant à l'id de l'artiste en paragraphe.
-     * @param int $id Identifiant de l'artiste
+     * @param int $id Identifiant du film
      * @return Poster
      */
     public static function findById(int $id): Poster
