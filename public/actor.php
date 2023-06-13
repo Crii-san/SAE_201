@@ -13,6 +13,8 @@ use Entity\Exception\EntityNotFoundException;
 
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
+$actorId = intval($_GET['actorId']);
+
 $webPage = new WebPage();
 $actor = new Actor($_GET["name"],$_GET["birthplace"],$_GET["birthdate"],$_GET["biography"],$_GET["deathDay"]);
 
