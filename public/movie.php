@@ -1,12 +1,10 @@
 <?php
 declare(strict_types=1);
 
-
 require_once '../vendor/autoload.php';
 
 use Database\MyPdo;
 use Html\WebPage;
-use Entity\Actor;
 use Entity\Movie;
 use Entity\Exception\EntityNotFoundException;
 
@@ -34,7 +32,7 @@ $webPage->appendContent("<div>");
 $webPage->appendContent("<img src='/poster.php?posterId={$poster}'>");
 $webPage->appendContent("<p>Titre : {$movie->getTitle()} </p>");
 $webPage->appendContent("<p>Date de sortie : {$movie->getReleaseDate()} </p>");
-$webPage->appendContent("<p>Tirtre original : {$movie->getOriginalTitle()}</p>");
+$webPage->appendContent("<p>Titre original : {$movie->getOriginalTitle()}</p>");
 $webPage->appendContent("<p>Slogan :{$movie->getTagline()} </p>");
 $webPage->appendContent("<p>Résumé : {$movie->getOverview()} </p>");
 $webPage->appendContent("</div>");
@@ -60,7 +58,7 @@ while (($ligne = $stmt->fetch()) !== false) {
     $actorId = $ligne['id'];
 
     #lien vers l'acteur
-    $webPage->appendContent("<a href='actor.php?actorId={$actorId}'>");
+    $webPage->appendContent("<a href='/actor.php?actorId={$actorId}'>");
 
     $webPage->appendContent("<img src='/poster.php?posterId={$vignette}'>");
     $webPage->appendContent("<p>Rôle : {$ligne['role']}</p>\n");
