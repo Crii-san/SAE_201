@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: white;
+    text-decoration: none;
+    font-family: Arial, serif;
+
+}
+
+a {
+    color: #A30000;
+    text-decoration: none;
+}
+.header{
+    margin: 0;
+    text-align: center;
+    height: 200%;
+    font-size: xxx-large;
+    align-items: center;
+    background-color: #575757;
+    flex: 1;
+}
+
+.footer{
+    margin: 0;
+    text-align: center;
+    background-color: #8C8C8C;
+    height: 200%;
+    font-size: xx-large;
+    align-items: center;
+    flex: 1;
+}
+
+.content {
+    margin: 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: #DEDEDE;
+}
+
+.film {
+    flex-direction: column;
+    text-align: center;
+    width: 15em;
+}
+
+.infosFilm {
+    color: black;
+    text-align: justify;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+}
+
+.détailsFilm {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+
+.x{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.actors, .roleActor{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+}
+.roleActor{
+    flex:3;
+    justify-content: space-around;
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+
+}
+.actor {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+
+
+
