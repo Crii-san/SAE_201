@@ -1,30 +1,30 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use PDO;
+
 class Actor
 {
+    protected int $int;
     protected string $name;
     protected string $birthPlace;
-    protected string $Birthdate;
+    protected string $placeOfBirth;
     protected string $biography;
-    protected string $deathDay;
+    protected string $deathday;
+    protected int $avatarId;
 
-    /**
-     * @param string $name
-     * @param string $birthPlace
-     * @param string $Birthdate
-     * @param string $biography
-     * @param string $deathDay
-     */
-    public function __construct(string $name, string $birthPlace, string $Birthdate, string $biography, string $deathDay)
+    public function __construct(string $name, string $birthPlace, string $placeOfBirth, string $biography, string $deathday, int $avatarId)
     {
         $this->name = $name;
         $this->birthPlace = $birthPlace;
-        $this->Birthdate = $Birthdate;
+        $this->placeOfBirth = $placeOfBirth;
         $this->biography = $biography;
-        $this->deathDay = $deathDay;
+        $this->deathday = $deathday;
+        $this->avatarId = $avatarId;
     }
 
     /**
@@ -108,4 +108,26 @@ class Actor
         $this->biography = $biography;
     }
 
+    public static function findById($id): Actor
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+        SELECT *
+        FROM movie
+        WHERE id = :id
+        SQL
+        );
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$res) {
+            http_response_code(404);
+            exit();
+        }
+        $movie = new Actor();
+
+        return $movie;
+    }
 }
