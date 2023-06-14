@@ -21,10 +21,12 @@ $webPage -> setTitle($movie->getTitle());
 #Ajout fichier CSS
 $webPage->appendCssUrl("/css/style.css");
 
-#Header
-$webPage->appendContent("<h1 class='header'>Films - {$movie->getTitle()} </h1>");
+# Header
+$webPage->appendContent("<div class='header'>");
+$webPage->appendContent("<h1 >Films - {$movie->getTitle()} </h1>");
+$webPage->appendContent("</div>");
 
-#content
+# Content
 
 $webPage->appendContent("<div class='content'>");
 
@@ -83,7 +85,11 @@ while (($ligne = $stmt->fetch()) !== false) {
 
 $webPage->appendContent("</div>");
 $webPage->appendContent("</div>");
-#Footer
-$webPage->appendContent("<p class='footer'>Dernière mofication : {$webPage->getLastModification()}</p>");
 
+#Footer
+$webPage->appendContent("<div class='footer'>");
+$webPage->appendContent("<p>Dernière mofication : {$webPage->getLastModification()}</p>");
+$webPage->appendContent("</div>");
+
+# Affichage
 echo $webPage->toHTML();
