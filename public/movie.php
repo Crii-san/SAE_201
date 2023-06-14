@@ -8,7 +8,7 @@ use Database\MyPdo;
 use Html\WebPage;
 use Entity\Movie;
 
-# Connection à la base de donnée
+# Connection à la base de données
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
 # Récupération de l'id du film
@@ -44,7 +44,8 @@ $webPage->appendContent("<img class='affiche' src='/poster.php?posterId={$poster
 $webPage->appendContent("<div class='infosFilm'>");
 $webPage->appendContent("<div class='x'>");
 $webPage->appendContent("<p>Titre : {$movie->getTitle()} </p>");
-$webPage->appendContent("<p>Date de sortie : {$movie->getReleaseDate()} </p>");
+$date = date('d/m/Y', strtotime($movie->getReleaseDate()));
+$webPage->appendContent("<p>Date de sortie : {$date} </p>");
 $webPage->appendContent("</div>");
 $webPage->appendContent("<p class='titreOriginal'>Titre original : {$movie->getOriginalTitle()}</p>");
 $webPage->appendContent("<p>Slogan : {$movie->getTagline()} </p>");
@@ -70,24 +71,24 @@ SQL
 $stmt->bindValue(':movieId', $movieId, PDO::PARAM_INT);
 $stmt->execute();
 
-#Aajout de la liste des acteurs du film
-while (($ligne = $stmt->fetch()) !== false) {
+#Ajout de la liste des acteurs du film
+while (($element = $stmt->fetch()) !== false) {
 
-    $vignette = $ligne['avatarId'];
-    $actorId = $ligne['id'];
+    $avatar = $element['avatarId'];
+    $actorId = $element['id'];
 
     #lien vers l'acteur
     $webPage->appendContent("<a href='/actor.php?actorId={$actorId}'>");
 
     $webPage->appendContent("<div class='actor'>");
-    if ($vignette == null) {
+    if ($avatar == null) {
         $webPage->appendContent("<img src='http://cutrona/but/s2/sae2-01/ressources/public/img/actor.png' alt='Photo de l acteur'>");
     } else {
-        $webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo de l acteur'>");
+        $webPage->appendContent("<img src='/poster.php?posterId={$avatar}' alt='Photo de l acteur'>");
     }
     $webPage->appendContent("<div class='roleActor'>");
-    $webPage->appendContent("<p>Rôle : {$ligne['role']}</p>\n");
-    $webPage->appendContent("<p>Acteur : {$ligne['name']}</p>\n");
+    $webPage->appendContent("<p>Rôle : {$element['role']}</p>\n");
+    $webPage->appendContent("<p>Acteur : {$element['name']}</p>\n");
     $webPage->appendContent("</div>");
     $webPage->appendContent("</div>");
     $webPage->appendContent("</a>");
