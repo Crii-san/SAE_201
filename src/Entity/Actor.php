@@ -81,7 +81,7 @@ class Actor
     /** renvois le lieu de naissance de l'acteur
      * @return string
      */
-    public function getBirthPlace(): string
+    public function getBirthPlace(): string|null
     {
         return $this->placeOfBirth;
     }
@@ -114,7 +114,7 @@ class Actor
     /** renvois la date de naissance de l'acteur
      * @return string
      */
-    public function getBirthday(): string
+    public function getBirthday(): string|null
     {
         return $this->birthday;
     }

@@ -20,10 +20,12 @@ $webPage -> setTitle("Liste des films");
 # Liaison du fichier CSS
 $webPage->appendCssUrl("/css/style.css");
 
-# Initialisation de l'header de la page
-$webPage->appendContent("<h1 class='header'>Films</h1>");
+#Header
+$webPage->appendContent("<div class='header'>");
+$webPage->appendContent("<h1 >Films</h1>");
+$webPage->appendContent("</div>");
 
-#
+#Content
 
 $webPage->appendContent("<div class='content'>");
 
@@ -52,7 +54,9 @@ while (($ligne = $stmt->fetch()) !== false) {
 $webPage->appendContent("</div>");
 
 #Footer
-$webPage->appendContent("<p class='footer'>Dernière modification {$webPage->getLastModification()}</p>");
+$webPage->appendContent("<div class='footer'>");
+$webPage->appendContent("<p>Dernière modification {$webPage->getLastModification()}</p>");
+$webPage->appendContent("</div>");
 
-# envois de la page html
+# envoi de la page html
 echo $webPage->toHTML();
