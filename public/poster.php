@@ -16,17 +16,13 @@ if (!isset($_GET['posterId']) || !ctype_digit($_GET['posterId'])) {
     throw new Exception("L'identifiant donné n'est pas valide.");
 }
 
-# Vignette par défaut en cas de nullabilité de l'identifiant
-/*
-$src = "http://cutrona/but/s2/sae2-01/ressources/public/img/actor.png";*/
-
 if (Poster::findById((int)$_GET['posterId'])) {
     $src = Poster::findById((int)$_GET['posterId']);
-} elseif (Poster::findById((int)$_GET['posterId']) ==null) {
-    $src = "http://cutrona/but/s2/sae2-01/ressources/public/img/actor.png";
+    header("Content-type: image/jpeg");
+    echo $src->getJpeg();
 }
-header("Content-type: image/jpeg");
-echo $src->getJpeg();
+
+
 /*
 catch (ParameterException) {
     http_response_code(400);
