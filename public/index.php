@@ -27,7 +27,20 @@ $webPage->appendContent("</div>");
 # Content
 $webPage->appendContent("<div class='content'>");
 
-# Requête qui liste tous les films de la base de données
+#requete liste des films présent dans la table
+if (!isset($_GET['filtre'])){
+    $stmt = MyPDO::getInstance()->prepare(
+        <<<'SQL'
+        SELECT *
+        FROM movie m,movie_genre mg
+        WHERE mg.movieId = m.id
+        AND mg.genreId IN :filtre
+        SQL
+    );
+    $stmt->bindValue(':filtre', $_GET['filtre'], PDO::PARAM_INT);
+    $stmt->execute();
+}
+else{
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
         SELECT *
@@ -35,7 +48,8 @@ $stmt = MyPDO::getInstance()->prepare(
         ORDER BY title
         SQL
 );
-$stmt->execute();
+    $stmt->execute();
+}
 
 # Ajout de la liste des films de l'acteur
 while (($element = $stmt->fetch()) !== false) {
@@ -49,7 +63,11 @@ while (($element = $stmt->fetch()) !== false) {
 }
 $webPage->appendContent("</div>");
 
-# Footer
+#accéder à la page de trie
+$webPage->appendContent("<a href='/filtre.php'>Trier les films par genre?</a>");
+
+
+#Footer
 $webPage->appendContent("<div class='footer'>");
 $webPage->appendContent("<p>Dernière modification : {$webPage->getLastModification()}</p>");
 $webPage->appendContent("</div>");
