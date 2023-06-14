@@ -8,20 +8,25 @@ use Html\WebPage;
 use Entity\Movie;
 use Entity\Exception\EntityNotFoundException;
 
+# Connection à la base de donnée
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
+# Récupération de l'id du film
 $movieId = intval($_GET['movieId']);
 
+# Création de la page web
 $webPage = new WebPage();
+
+# Création du film concerné par la fiche
 $movie = Movie::findById($movieId);
 
-#Titre de la page
+# Initialisation du titre de la page
 $webPage -> setTitle($movie->getTitle());
 
-#Ajout fichier CSS
+# Liaison du fichier CSS
 $webPage->appendCssUrl("/css/style.css");
 
-#Header
+# Initialisation de l'header de la page
 $webPage->appendContent("<h1 class='header'>Films - {$movie->getTitle()} </h1>");
 
 #content
@@ -29,10 +34,11 @@ $webPage->appendContent("<h1 class='header'>Films - {$movie->getTitle()} </h1>")
 $webPage->appendContent("<div class='content'>");
 
 $webPage->appendContent("<div class='détailsFilm'>");
-# Film
+
+# intégration de l'affiche du film
 $poster = $movie->getPosterId();
 $webPage->appendContent("<img class='affiche' src='/poster.php?posterId={$poster}' alt='Affiche du film'>");
-
+# ajout des informations du film
 $webPage->appendContent("<div class='infosFilm'>");
 $webPage->appendContent("<div class='x'>");
 $webPage->appendContent("<p>Titre : {$movie->getTitle()} </p>");
@@ -50,6 +56,8 @@ $webPage->appendContent("</div>");
 
 $webPage->appendContent("<div class='actors'>");
 
+# Requete des informations sur les acteurs du film
+
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT p.id, role, name, birthday, deathDay, biography, placeOfBirth, avatarId
@@ -64,12 +72,12 @@ SQL
 $stmt->bindValue(':movieId', $movieId, PDO::PARAM_INT);
 $stmt->execute();
 
+#ajout de la liste des acteur du film
 while (($ligne = $stmt->fetch()) !== false) {
 
     $vignette = $ligne['avatarId'];
     $actorId = $ligne['id'];
 
-    #lien vers l'acteur
     $webPage->appendContent("<a href='/actor.php?actorId={$actorId}'>");
     $webPage->appendContent("<div class='actor'>");
     $webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo de l acteur'>");
@@ -83,7 +91,9 @@ while (($ligne = $stmt->fetch()) !== false) {
 
 $webPage->appendContent("</div>");
 $webPage->appendContent("</div>");
+
 #Footer
 $webPage->appendContent("<p class='footer'>Dernière mofication : {$webPage->getLastModification()}</p>");
 
+# envois de la page html
 echo $webPage->toHTML();
