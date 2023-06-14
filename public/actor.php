@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
@@ -78,12 +79,13 @@ while (($ligne = $stmt->fetch()) !== false) {
     $webPage->appendContent("<div class='film'>");
     $idPoster = $ligne['posterId'];
     $webPage->appendContent("<a href='/movie.php?movieId={$ligne['movieId']}'>");
-
     $webPage->appendContent("<div class='poster'>");
-    $webPage->appendContent("<img src='/poster.php?posterId={$idPoster}' alt='Affiche du film'>");
+    if ($vignette == null) {
+        $webPage->appendContent("<img src='http://cutrona/but/s2/sae2-01/ressources/public/img/movie.png' alt='Photo de l acteur'>");
+    } else {
+        $webPage->appendContent("<img src='/poster.php?posterId={$idPoster}' alt='Affiche du film'>");
+    }
     $webPage->appendContent("</div>");
-
-
     $webPage->appendContent("<div class='textInfos'>");
     $webPage->appendContent("<p>Film : {$ligne['title']}</p>\n");
     $webPage->appendContent("<p>Rôle : {$ligne['role']}</p>\n");
