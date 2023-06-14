@@ -26,10 +26,12 @@ $webPage -> setTitle($movie->getTitle());
 # Liaison du fichier CSS
 $webPage->appendCssUrl("/css/style.css");
 
-# Initialisation de l'header de la page
-$webPage->appendContent("<h1 class='header'>Films - {$movie->getTitle()} </h1>");
+# Header
+$webPage->appendContent("<div class='header'>");
+$webPage->appendContent("<h1 >Films - {$movie->getTitle()} </h1>");
+$webPage->appendContent("</div>");
 
-#content
+# Content
 
 $webPage->appendContent("<div class='content'>");
 
@@ -78,6 +80,7 @@ while (($ligne = $stmt->fetch()) !== false) {
     $vignette = $ligne['avatarId'];
     $actorId = $ligne['id'];
 
+    #lien vers l'acteur
     $webPage->appendContent("<a href='/actor.php?actorId={$actorId}'>");
     $webPage->appendContent("<div class='actor'>");
     $webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo de l acteur'>");
@@ -93,7 +96,9 @@ $webPage->appendContent("</div>");
 $webPage->appendContent("</div>");
 
 #Footer
-$webPage->appendContent("<p class='footer'>Dernière mofication : {$webPage->getLastModification()}</p>");
+$webPage->appendContent("<div class='footer'>");
+$webPage->appendContent("<p>Dernière mofication : {$webPage->getLastModification()}</p>");
+$webPage->appendContent("</div>");
 
-# envois de la page html
+# Affichage
 echo $webPage->toHTML();

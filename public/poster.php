@@ -10,7 +10,7 @@ use Exception\ParameterException;
 # Connection à la base de donnée
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
-#verification de l'éxistance d'un poster pour l'id fournis
+#verification de l'existence d'un poster pour l'id fourni
 try {
     if (!isset($_GET['posterId']) || !ctype_digit($_GET['posterId'])) {
         throw new ParameterException("Erreur");
