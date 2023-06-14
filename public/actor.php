@@ -25,11 +25,7 @@ $webPage -> setTitle($actor->getName());
 
 #Ajout fichier CSS
 $webPage->appendCssUrl("/css/styleActor.css");
-# Liaison du fichier CSS
-$webPage->appendCssUrl("/css/style.css");
 
-# Initialisation de l'header de la page
-$webPage->appendContent("<h1 class='header'>Films - {$actor->getName()}</h1>");
 # Header
 $webPage->appendContent("<div class='header'>");
 $webPage->appendContent("<h1>Films - {$actor->getName()}</h1>");
