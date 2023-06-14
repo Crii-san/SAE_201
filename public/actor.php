@@ -21,10 +21,12 @@ $actor = Actor::findById($actorId);
 $webPage -> setTitle($actor->getName());
 
 #Ajout fichier CSS
-$webPage->appendCssUrl("/css/style.css");
+$webPage->appendCssUrl("/css/styleActor.css");
 
-#Header
-$webPage->appendContent("<h1 class='header'>Films - {$actor->getName()}</h1>");
+# Header
+$webPage->appendContent("<div class='header'>");
+$webPage->appendContent("<h1>Films - {$actor->getName()}</h1>");
+$webPage->appendContent("</div>");
 
 #content
 $webPage->appendContent("<div class='content'>");
@@ -36,17 +38,23 @@ if ($actor->getDeathDay() == null) {
     $res = "- Mort le : ".$actor->getDeathDay();
 }
 $vignette = $actor->getAvatarId();
-$webPage->appendContent("<div>");
-$webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo acteur>");
+
+$webPage->appendContent("<div class='infosActor'>");
+
+$webPage->appendContent("<div class='poster'>");
+$webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo acteur'>");
+$webPage->appendContent("</div>");
+
+$webPage->appendContent("<div class='textInfos'>");
 $webPage->appendContent("<p>Nom : {$actor->getName()} </p>");
 $webPage->appendContent("<p>Lieu de naissance : {$actor->getBirthPlace()} </p>");
 $webPage->appendContent("<p>Né le : {$actor->getBirthday()} {$res}</p>");
 $webPage->appendContent("<p>Biographie : {$actor->getBiography()} </p>");
 $webPage->appendContent("</div>");
 
-#Informations sur les films de l'acteur
-# à completer, implementer la variable dans le where
+$webPage->appendContent("</div>");
 
+#Informations sur les films de l'acteur
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT *
@@ -61,17 +69,30 @@ $stmt->bindValue(':actorId', $actorId, PDO::PARAM_INT);
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
+    $webPage->appendContent("<div class='film'>");
     $idPoster = $ligne['posterId'];
-    $webPage->appendContent("<a href='/movie.php?movieId={$ligne['movieId']}>");
+    $webPage->appendContent("<a href='/movie.php?movieId={$ligne['movieId']}'>");
+
+    $webPage->appendContent("<div class='poster'>");
     $webPage->appendContent("<img src='/poster.php?posterId={$idPoster}' alt='Affiche du film'>");
+    $webPage->appendContent("</div>");
+
+
+    $webPage->appendContent("<div class='textInfos'>");
     $webPage->appendContent("<p>Film : {$ligne['title']}</p>\n");
     $webPage->appendContent("<p>Rôle : {$ligne['role']}</p>\n");
     $webPage->appendContent("<p>Date de sortie : {$ligne['releaseDate']}</p>\n");
     $webPage->appendContent("</a>");
+    $webPage->appendContent("</div>");
+    $webPage->appendContent("</div>");
+
 }
-$webPage->appendContent("<div>");
+$webPage->appendContent("</div>");
 
-#Footer
-$webPage->appendContent("<p class='footer'>Dernière modification {$webPage->getLastModification()}</p>");
+# Footer
+$webPage->appendContent("<div class='footer'>");
+$webPage->appendContent("<p>Dernière modification {$webPage->getLastModification()}</p>");
+$webPage->appendContent("</div>");
 
+# Affichage
 echo $webPage->toHTML();
