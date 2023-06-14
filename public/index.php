@@ -34,6 +34,7 @@ $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
         SELECT *
         FROM movie
+        ORDER BY title
         SQL
 );
 $stmt->execute();
