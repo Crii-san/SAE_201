@@ -78,4 +78,5 @@ $webPage->appendContent("<div>");
 #Footer
 $webPage->appendContent("<p class='footer'>Dernière modification {$webPage->getLastModification()}</p>");
 
+# envois de la page html
 echo $webPage->toHTML();
