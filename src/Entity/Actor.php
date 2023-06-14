@@ -63,7 +63,7 @@ class Actor
     /**
      * @return string
      */
-    public function getBirthPlace(): string
+    public function getBirthPlace(): string|null
     {
         return $this->placeOfBirth;
     }
@@ -103,7 +103,7 @@ class Actor
     /**
      * @return string
      */
-    public function getBirthday(): string
+    public function getBirthday(): string|null
     {
         return $this->birthday;
     }
