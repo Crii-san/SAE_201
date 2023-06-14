@@ -38,12 +38,12 @@ $stmt = MyPDO::getInstance()->prepare(
 $stmt->execute();
 
 # Ajout de la liste des films de l'acteur
-while (($ligne = $stmt->fetch()) !== false) {
-    $webPage->appendContent("<a href='/movie.php?movieId={$ligne['id']}'>");
+while (($element = $stmt->fetch()) !== false) {
+    $webPage->appendContent("<a href='/movie.php?movieId={$element['id']}'>");
     $webPage->appendContent("<div class='film'>");
-    $poster = $ligne['posterId'];
+    $poster = $element['posterId'];
     $webPage->appendContent("<img src='/poster.php?posterId={$poster}' alt='Poster du film'>");
-    $webPage->appendContent("<p>{$ligne['title']}</p>\n");
+    $webPage->appendContent("<p>{$element['title']}</p>\n");
     $webPage->appendContent("</div>");
     $webPage->appendContent("</a><br>");
 }
