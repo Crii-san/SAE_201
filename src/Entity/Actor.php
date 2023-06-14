@@ -6,17 +6,35 @@ namespace Entity;
 
 use Database\MyPdo;
 use PDO;
-
+/**
+ * Class Actor : définit un film d'après la table cutron01_people.
+ */
 class Actor
 {
+    /**identifiant de l'acteur*/
     protected int $id;
+    /**nom de l'acteur*/
     protected string $name;
+    /**date de naissance de l'acteur*/
     protected string|null $birthday;
+    /**lieu de naissance de l'acteur*/
     protected string|null $placeOfBirth;
+    /**biographie de l'acteur*/
     protected string $biography;
+    /**date de mort de l'acteur*/
     protected string|null $deathday;
+    /**identifiant de l'avatar de l'acteur*/
     protected int $avatarId;
 
+    /** Constructeur de la classe Actor. Ce constructeur créer une instance d'acteur
+     * @param int $id
+     * @param string $name
+     * @param string|null $birthday
+     * @param string|null $placeOfBirth
+     * @param string $biography
+     * @param string|null $deathday
+     * @param int $avatarId
+     */
     public function __construct(int $id, string $name, string|null $birthday, string|null $placeOfBirth, string $biography, string|null $deathday, int $avatarId)
     {
         $this->id = $id;
@@ -28,7 +46,7 @@ class Actor
         $this->avatarId = $avatarId;
     }
 
-    /**
+    /** renvois l'identifiant de l'avatar
      * @return int
      */
     public function getAvatarId(): int
@@ -36,7 +54,7 @@ class Actor
         return $this->avatarId;
     }
 
-    /**
+    /** change l'identifiant de l'avatar
      * @param int $avatarId
      */
     public function setAvatarId(int $avatarId): void
@@ -44,7 +62,7 @@ class Actor
         $this->avatarId = $avatarId;
     }
 
-    /**
+    /** renvois la biography de l'acteur
      * @return string
      */
     public function getBiography(): string
@@ -52,7 +70,7 @@ class Actor
         return $this->biography;
     }
 
-    /**
+    /** change la biography de l'acteur
      * @param string $biography
      */
     public function setBiography(string $biography): void
@@ -60,7 +78,7 @@ class Actor
         $this->biography = $biography;
     }
 
-    /**
+    /** renvois le lieu de naissance de l'acteur
      * @return string
      */
     public function getBirthPlace(): string
@@ -68,7 +86,7 @@ class Actor
         return $this->placeOfBirth;
     }
 
-    /**
+    /** change le lieu de naissance de l'acteur
      * @param string $birthPlace
      */
     public function setBirthPlace(string $placeOfBirth): void
@@ -76,7 +94,7 @@ class Actor
         $this->placeOfBirth = $placeOfBirth;
     }
 
-    /**
+    /** renvois la date de mort de l'acteur
      * @return string
      */
     public function getDeathday(): string|null
@@ -84,7 +102,7 @@ class Actor
         return $this->deathday;
     }
 
-    /**
+    /** change la date de mort de l'acteur
      * @param string $deathday
      */
     public function setDeathday(string $deathday): void
@@ -92,15 +110,8 @@ class Actor
         $this->deathday = $deathday;
     }
 
-    /**
-     * @return int
-     */
-    public function getInt(): int
-    {
-        return $this->int;
-    }
 
-    /**
+    /** renvois la date de naissance de l'acteur
      * @return string
      */
     public function getBirthday(): string
@@ -108,7 +119,7 @@ class Actor
         return $this->birthday;
     }
 
-    /**
+    /** change la date de naissance de l'acteur
      * @param string $birthday
      */
     public function setBirthday(string $birthday): void
@@ -116,7 +127,7 @@ class Actor
         $this->birthday = $birthday;
     }
 
-    /**
+    /** renvois l'id de l'acteur
      * @return int
      */
     public function getId(): int
@@ -124,7 +135,7 @@ class Actor
         return $this->id;
     }
 
-    /**
+    /** change l'id de l'acteur
      * @param int $id
      */
     public function setId(int $id): void
@@ -132,15 +143,8 @@ class Actor
         $this->id = $id;
     }
 
-    /**
-     * @param int $int
-     */
-    public function setInt(int $int): void
-    {
-        $this->int = $int;
-    }
 
-    /**
+    /** renvois le nom de l'acteur
      * @return string
      */
     public function getName(): string
@@ -148,7 +152,7 @@ class Actor
         return $this->name;
     }
 
-    /**
+    /** change le nom de l'acteur
      * @param string $name
      */
     public function setName(string $name): void
@@ -156,7 +160,7 @@ class Actor
         $this->name = $name;
     }
 
-    /**
+    /** renvois le lieu de naissance de l'acteur
      * @return string
      */
     public function getPlaceOfBirth(): string
@@ -164,7 +168,7 @@ class Actor
         return $this->placeOfBirth;
     }
 
-    /**
+    /** change le lieu de naissance de l'acteur
      * @param string $placeOfBirth
      */
     public function setPlaceOfBirth(string $placeOfBirth): void
@@ -172,6 +176,10 @@ class Actor
         $this->placeOfBirth = $placeOfBirth;
     }
 
+    /** créer une instance d'acteur à l'aide de son id
+     * @param int $id
+     * @return Actor
+     */
     public static function findById($id): Actor
     {
         $stmt = MyPDO::getInstance()->prepare(
