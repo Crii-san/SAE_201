@@ -54,6 +54,13 @@ a {
     border-style: solid;
 }
 
+.ficheActor{
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+}
+
 .détailsFilm {
     display: flex;
     flex-direction: row;
@@ -86,6 +93,9 @@ a {
     padding: 5px;
 }
 
+.films {
+    display: flex;
+}
 
 
 
