@@ -63,7 +63,7 @@ SQL
 $stmt->bindValue(':actorId', $actorId, PDO::PARAM_INT);
 $stmt->execute();
 
-#Renvois la liste des films de l'acteur
+#ajout de la liste des films de l'acteur
 while (($ligne = $stmt->fetch()) !== false) {
     $idPoster = $ligne['posterId'];
     $webPage->appendContent("<a href='/movie.php?movieId={$ligne['movieId']}>");
