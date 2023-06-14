@@ -5,20 +5,32 @@ namespace Entity;
 
 use Database\MyPdo;
 use PDO;
-
+/**
+ * Class Movie : définit un film d'après la table cutron01_movie.
+ */
 class Movie
 {
+    /**identifiant*/
     protected int $id;
+    /**Langue d'origine du film*/
     protected string  $originalLanguage;
+    /**Titre d'origine du film*/
     protected string  $originalTitle;
+    /**Résumé du film*/
     protected string  $overview;
+    /**Date de sortie du film*/
     protected string  $releaseDate;
+    /**Durée du film*/
     protected int  $runtime;
+    /**Slogan du film*/
     protected string  $tagline;
+    /**Titre en france du film*/
     protected string  $title;
+    /**Identifiant du poster du film*/
     private int $posterId;
 
     /**
+     * renvois l'identifiant du poster du film
      * @return int
      */
     public function getPosterId(): int
@@ -27,6 +39,7 @@ class Movie
     }
 
     /**
+     * ajoute/change la valeur de l'identifiant du poster du film
      * @param int $posterId
      */
     public function setPosterId(int $posterId): void
@@ -34,9 +47,8 @@ class Movie
         $this->posterId = $posterId;
     }
 
-    /**
+    /** Constructeur de la classe Movie. Ce constructeur créer une instance de film
      * @param int $id
-     *
      * @param string $originalLanguage
      * @param string $originalTitle
      * @param string $overview
@@ -58,7 +70,7 @@ class Movie
         $this->title = $title;
     }
 
-    /**
+    /** renvois l'identifiant du film
      * @return int
      */
     public function getId(): int
@@ -66,7 +78,7 @@ class Movie
         return $this->id;
     }
 
-    /**
+    /** renvois le language d'origine du film
      * @return string
      */
     public function getOriginalLanguage(): string
@@ -74,7 +86,7 @@ class Movie
         return $this->originalLanguage;
     }
 
-    /**
+    /** change le language d'origine du film
      * @param string $originalLanguage
      */
     public function setOriginalLanguage(string $originalLanguage): void
@@ -82,7 +94,7 @@ class Movie
         $this->originalLanguage = $originalLanguage;
     }
 
-    /**
+    /** renvois le titre d'origine du film
      * @return string
      */
     public function getOriginalTitle(): string
@@ -90,7 +102,7 @@ class Movie
         return $this->originalTitle;
     }
 
-    /**
+    /** change le titre d'origine du film
      * @param string $originalTitle
      */
     public function setOriginalTitle(string $originalTitle): void
@@ -98,7 +110,7 @@ class Movie
         $this->originalTitle = $originalTitle;
     }
 
-    /**
+    /** renvois le résumé du film
      * @return string
      */
     public function getOverview(): string
@@ -106,7 +118,7 @@ class Movie
         return $this->overview;
     }
 
-    /**
+    /** change le résumé du film
      * @param string $overview
      */
     public function setOverview(string $overview): void
@@ -114,7 +126,7 @@ class Movie
         $this->overview = $overview;
     }
 
-    /**
+    /** renvois la date de sortie du film
      * @return string
      */
     public function getReleaseDate(): string
@@ -122,7 +134,7 @@ class Movie
         return $this->releaseDate;
     }
 
-    /**
+    /** change la date de sortie du film
      * @param string $releaseDate
      */
     public function setReleaseDate(string $releaseDate): void
@@ -130,7 +142,7 @@ class Movie
         $this->releaseDate = $releaseDate;
     }
 
-    /**
+    /** renvois la durée du film
      * @return string
      */
     public function getRuntime(): int
@@ -138,7 +150,7 @@ class Movie
         return $this->runtime;
     }
 
-    /**
+    /** change la durée du film
      * @param int $runtime
      */
     public function setRuntime(int $runtime): void
@@ -146,7 +158,7 @@ class Movie
         $this->runtime = $runtime;
     }
 
-    /**
+    /** renvois le slogan du film
      * @return string
      */
     public function getTagline(): string
@@ -154,7 +166,7 @@ class Movie
         return $this->tagline;
     }
 
-    /**
+    /** change le slogan du film
      * @param string $tagline
      */
     public function setTagline(string $tagline): void
@@ -162,7 +174,7 @@ class Movie
         $this->tagline = $tagline;
     }
 
-    /**
+    /** renvois le titre du film
      * @return string
      */
     public function getTitle(): string
@@ -170,7 +182,7 @@ class Movie
         return $this->title;
     }
 
-    /**
+    /** change le titre du film
      * @param string $title
      */
     public function setTitle(string $title): void
@@ -178,7 +190,7 @@ class Movie
         $this->title = $title;
     }
 
-    /**
+    /** change l'identifiant du film
      * @param int $id
      */
     public function setId(int $id): void
@@ -186,6 +198,10 @@ class Movie
         $this->id = $id;
     }
 
+    /** créer une instance de film à l'aide de son id
+     * @param int $id
+     * @return Movie
+     */
     public static function findById($id): Movie
     {
         $stmt = MyPDO::getInstance()->prepare(

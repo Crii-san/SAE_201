@@ -8,21 +8,28 @@ use Html\WebPage;
 use Entity\Actor;
 use Entity\Exception\EntityNotFoundException;
 
+# Connection à la base de donnée
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 
+# Récupération de l'id de l'acteur
 $actorId = $_GET['actorId'];
 
+# Création de la page web
 $webPage = new WebPage();
 
-# Acteur concerné par la fiche
+# Création de l'acteur concerné par la fiche
 $actor = Actor::findById($actorId);
 
-#Titre de la page
+# Initialisation du titre de la page
 $webPage -> setTitle($actor->getName());
 
 #Ajout fichier CSS
 $webPage->appendCssUrl("/css/styleActor.css");
+# Liaison du fichier CSS
+$webPage->appendCssUrl("/css/style.css");
 
+# Initialisation de l'header de la page
+$webPage->appendContent("<h1 class='header'>Films - {$actor->getName()}</h1>");
 # Header
 $webPage->appendContent("<div class='header'>");
 $webPage->appendContent("<h1>Films - {$actor->getName()}</h1>");
@@ -31,7 +38,7 @@ $webPage->appendContent("</div>");
 #content
 $webPage->appendContent("<div class='content'>");
 
-# Informations sur l'acteur
+# Ajout des informations de l'acteur
 if ($actor->getDeathDay() == null) {
     $res = "";
 } else {
@@ -54,7 +61,9 @@ $webPage->appendContent("</div>");
 
 $webPage->appendContent("</div>");
 
-#Informations sur les films de l'acteur
+
+# Requête des informations sur les films de l'acteur
+
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT *
@@ -68,6 +77,7 @@ SQL
 $stmt->bindValue(':actorId', $actorId, PDO::PARAM_INT);
 $stmt->execute();
 
+#ajout de la liste des films de l'acteur
 while (($ligne = $stmt->fetch()) !== false) {
     $webPage->appendContent("<div class='film'>");
     $idPoster = $ligne['posterId'];
