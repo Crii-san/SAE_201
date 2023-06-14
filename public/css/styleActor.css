@@ -29,6 +29,7 @@ a {
     overflow-y: scroll;
     background-color: #DEDEDE;
     color: black;
+    font-size: large;
 }
 
 .infosActor, .film {
