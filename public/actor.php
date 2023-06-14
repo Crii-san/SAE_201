@@ -7,7 +7,7 @@ require_once '../vendor/autoload.php';
 use Database\MyPdo;
 use Html\WebPage;
 use Entity\Actor;
-use Entity\Exception\EntityNotFoundException;
+
 
 # Connection à la base de donnée
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
@@ -46,7 +46,13 @@ $vignette = $actor->getAvatarId();
 $webPage->appendContent("<div class='infosActor'>");
 
 $webPage->appendContent("<div class='poster'>");
-$webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo acteur'>");
+
+if ($vignette == null) {
+    $webPage->appendContent("<img src='http://cutrona/but/s2/sae2-01/ressources/public/img/actor.png' alt='Photo de l acteur'>");
+} else {
+    $webPage->appendContent("<img src='/poster.php?posterId={$vignette}' alt='Photo de l acteur'>");
+}
+
 $webPage->appendContent("</div>");
 
 $webPage->appendContent("<div class='textInfos'>");
@@ -80,7 +86,7 @@ while (($ligne = $stmt->fetch()) !== false) {
     $idPoster = $ligne['posterId'];
     $webPage->appendContent("<a href='/movie.php?movieId={$ligne['movieId']}'>");
     $webPage->appendContent("<div class='poster'>");
-    if ($vignette == null) {
+    if ($idPoster == null) {
         $webPage->appendContent("<img src='http://cutrona/but/s2/sae2-01/ressources/public/img/movie.png' alt='Photo de l acteur'>");
     } else {
         $webPage->appendContent("<img src='/poster.php?posterId={$idPoster}' alt='Affiche du film'>");
