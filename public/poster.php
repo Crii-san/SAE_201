@@ -21,4 +21,3 @@ if (Poster::findById((int)$_GET['posterId'])) {
     header("Content-type: image/jpeg");
     echo $src->getJpeg();
 }
-

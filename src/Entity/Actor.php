@@ -6,6 +6,7 @@ namespace Entity;
 
 use Database\MyPdo;
 use PDO;
+
 /**
  * Class Actor : définit un film d'après la table cutron01_people.
  */
@@ -50,7 +51,6 @@ class Actor
      * @return int
      */
     public function getAvatarId(): int|null
-
     {
         return $this->avatarId;
     }

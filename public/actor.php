@@ -8,7 +8,6 @@ use Database\MyPdo;
 use Html\WebPage;
 use Entity\Actor;
 
-
 # Connection à la base de donnée
 MyPDO::setConfiguration('mysql:host=mysql;dbname=souk0003_movie;charset=utf8', 'souk0003', 'Ouinouin2023');
 

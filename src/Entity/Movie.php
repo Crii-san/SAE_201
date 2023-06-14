@@ -1,10 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Entity;
 
 use Database\MyPdo;
 use PDO;
+
 /**
  * Class Movie : définit un film d'après la table cutron01_movie.
  */
