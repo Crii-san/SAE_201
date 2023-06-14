@@ -2,34 +2,29 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    color: white;
     text-decoration: none;
     font-family: Arial, serif;
-
+    margin: auto;
 }
 
 a {
     color: #A30000;
     text-decoration: none;
 }
-.header{
+
+.header, .footer{
     margin: 0;
     text-align: center;
-    height: 200%;
-    font-size: xxx-large;
+    font-size: medium;
     align-items: center;
+    color: white;
+}
+.header{
     background-color: #575757;
-    flex: 1;
 }
 
 .footer{
-    margin: 0;
-    text-align: center;
     background-color: #8C8C8C;
-    height: 200%;
-    font-size: xx-large;
-    align-items: center;
-    flex: 1;
 }
 
 .content {
@@ -40,6 +35,7 @@ a {
     justify-content: space-around;
     padding: 40px;
     background-color: #DEDEDE;
+    color: black;
 }
 
 .film {
@@ -48,7 +44,7 @@ a {
     width: 15em;
 }
 
-.infosFilm {
+.infosFilm{
     color: black;
     text-align: justify;
     padding: 10px;
@@ -63,7 +59,6 @@ a {
     flex-direction: row;
     padding: 10px;
 }
-
 
 .x{
     display: flex;
