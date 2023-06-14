@@ -19,7 +19,9 @@ $webPage -> setTitle("Liste des films");
 $webPage->appendCssUrl("/css/style.css");
 
 #Header
-$webPage->appendContent("<h1 class='header'>Films</h1>");
+$webPage->appendContent("<div class='header'>");
+$webPage->appendContent("<h1 >Films</h1>");
+$webPage->appendContent("</div>");
 
 #Content
 
@@ -47,6 +49,8 @@ while (($ligne = $stmt->fetch()) !== false) {
 $webPage->appendContent("</div>");
 
 #Footer
-$webPage->appendContent("<p class='footer'>Dernière modification {$webPage->getLastModification()}</p>");
+$webPage->appendContent("<div class='footer'>");
+$webPage->appendContent("<p>Dernière modification {$webPage->getLastModification()}</p>");
+$webPage->appendContent("</div>");
 
 echo $webPage->toHTML();
