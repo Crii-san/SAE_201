@@ -22,12 +22,3 @@ if (Poster::findById((int)$_GET['posterId'])) {
     echo $src->getJpeg();
 }
 
-
-/*
-catch (ParameterException) {
-    http_response_code(400);
-} catch (EntityNotFoundException) {
-    http_response_code(404);
-} catch (Exception) {
-    http_response_code(500);
-}*/
