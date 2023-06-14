@@ -24,7 +24,7 @@ class Actor
     /**date de mort de l'acteur*/
     protected string|null $deathday;
     /**identifiant de l'avatar de l'acteur*/
-    protected int $avatarId;
+    protected int|null $avatarId;
 
     /** Constructeur de la classe Actor. Ce constructeur créer une instance d'acteur
      * @param int $id
@@ -33,9 +33,9 @@ class Actor
      * @param string|null $placeOfBirth
      * @param string $biography
      * @param string|null $deathday
-     * @param int $avatarId
+     * @param int|null $avatarId
      */
-    public function __construct(int $id, string $name, string|null $birthday, string|null $placeOfBirth, string $biography, string|null $deathday, int $avatarId)
+    public function __construct(int $id, string $name, string|null $birthday, string|null $placeOfBirth, string $biography, string|null $deathday, int|null $avatarId)
     {
         $this->id = $id;
         $this->name = $name;
@@ -49,7 +49,8 @@ class Actor
     /** renvois l'identifiant de l'avatar
      * @return int
      */
-    public function getAvatarId(): int
+    public function getAvatarId(): int|null
+
     {
         return $this->avatarId;
     }

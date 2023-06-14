@@ -5,7 +5,6 @@ declare(strict_types=1);
 require_once '../vendor/autoload.php';
 
 use Database\MyPdo;
-use Entity\Poster;
 use Html\WebPage;
 
 # Connection à la base de donnée
@@ -20,43 +19,40 @@ $webPage -> setTitle("Liste des films");
 # Liaison du fichier CSS
 $webPage->appendCssUrl("/css/style.css");
 
-#Header
+# Header
 $webPage->appendContent("<div class='header'>");
 $webPage->appendContent("<h1 >Films</h1>");
 $webPage->appendContent("</div>");
 
-#Content
-
+# Content
 $webPage->appendContent("<div class='content'>");
 
-#requete liste des films présent dans la table
+# Requête qui liste tous les films de la base de données
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
         SELECT *
         FROM movie
+        ORDER BY title
         SQL
 );
 $stmt->execute();
 
-#ajout de la liste des films de l'acteur
-while (($ligne = $stmt->fetch()) !== false) {
-    $webPage->appendContent("<a href='/movie.php?movieId={$ligne['id']}'>");
+# Ajout de la liste des films de l'acteur
+while (($element = $stmt->fetch()) !== false) {
+    $webPage->appendContent("<a href='/movie.php?movieId={$element['id']}'>");
     $webPage->appendContent("<div class='film'>");
-    $poster = $ligne['posterId'];
+    $poster = $element['posterId'];
     $webPage->appendContent("<img src='/poster.php?posterId={$poster}' alt='Poster du film'>");
-    $webPage->appendContent("<p>{$ligne['title']}</p>\n");
+    $webPage->appendContent("<p>{$element['title']}</p>\n");
     $webPage->appendContent("</div>");
     $webPage->appendContent("</a><br>");
-
-
 }
-
 $webPage->appendContent("</div>");
 
-#Footer
+# Footer
 $webPage->appendContent("<div class='footer'>");
-$webPage->appendContent("<p>Dernière modification {$webPage->getLastModification()}</p>");
+$webPage->appendContent("<p>Dernière modification : {$webPage->getLastModification()}</p>");
 $webPage->appendContent("</div>");
 
-# envoi de la page html
+# Affichage de la page
 echo $webPage->toHTML();

@@ -107,7 +107,7 @@ class WebPage
      */
     public function getLastModification(): string
     {
-        return date("d/m/Y-H:i:s", getlastmod());
+        return date("d/m/Y - H:i:s", getlastmod());
     }
 
     /**Accesseur au titre $title de la page Web.
